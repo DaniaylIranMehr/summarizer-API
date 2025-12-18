@@ -55,4 +55,4 @@ iface = gr.Interface(
     description = "Enter text to summarize."
     )
 
-iface.launch()
+iface.launch(share=False, analytics=False, allow_flagging=False)
