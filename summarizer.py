@@ -2,7 +2,6 @@ import gradio as gr
 import requests
 import json
 
-api_key = "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"
 
 def summarize_text(text, api_key):
     if not api_key:
@@ -45,11 +44,15 @@ def summarize_text(text, api_key):
         return summary
     
     
+iface = gr.Interface(
+    fn = summarize_text,
+    inputs = [
+        gr.Textbox(label="Input", lines=10, placeholder="Please enter your text."),
+        gr.Textbox(label="API Key", type="password", placeholder="Openrouter's key.")
+    ],
+    outputs = gr.Textbox(label="Summary", lines=6),
+    title = "Summarization with AI",
+    description = "Enter text to summarize."
+    )
 
-
-t = input("TEXT:\n")
-result = summarize_text(t, api_key)
-
-print("########################")
-
-print(result)
+iface.launch()
